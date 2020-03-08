@@ -85,7 +85,6 @@ main(void)
     unsigned char k[crypto_shorthash_siphashx24_KEYBYTES];
 	unsigned char *r;
     size_t        i;
-    size_t        j;
 	r = (unsigned char *) malloc(crypto_shorthash_siphashx24_BYTES);
 
     for (i = 0; i < crypto_shorthash_siphashx24_KEYBYTES; ++i) {

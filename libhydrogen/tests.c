@@ -472,6 +472,6 @@ main(void)
     test_randombytes();
     test_secretbox();
     test_sign();
-
+	printf("libhydrogen\n");
     return 0;
 }
