@@ -2,7 +2,7 @@
 #include "onetimeauth_poly1305.h"
 #include "sodium/crypto_onetimeauth_poly1305.h"
 //#include "private/common.h"
-//#include "private/implementations.h"
+#include "sodium/private/implementations.h"
 #include "sodium/randombytes.h"
 //#include "runtime.h"
 

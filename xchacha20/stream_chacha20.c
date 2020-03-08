@@ -4,7 +4,7 @@
 #include "sodium/core.h"
 //#include "sodium/private/chacha20_ietf_ext.h"
 //#include "private/common.h"
-//#include "private/implementations.h"
+#include "sodium/private/implementations.h"
 #include "sodium/randombytes.h"
 //#include "runtime.h"
 #include "stream_chacha20.h"
@@ -18,7 +18,7 @@
 # include "dolbeau/chacha20_dolbeau-ssse3.h"
 #endif
 
-static const crypto_stream_chacha20_implementation *implementation =
+static const crypto_stream_chacha20_implementation *implementation_c =
     &crypto_stream_chacha20_ref_implementation;
 
 size_t
@@ -61,7 +61,7 @@ crypto_stream_chacha20(unsigned char *c, unsigned long long clen,
         //sodium_misuse();
         printf("MIUSE\n");
     }
-    return implementation->stream(c, clen, n, k);
+    return implementation_c->stream(c, clen, n, k);
 }
 
 int
@@ -74,7 +74,7 @@ crypto_stream_chacha20_xor_ic(unsigned char *c, const unsigned char *m,
         //sodium_misuse();
         printf("MISUSE\n");
     }
-    return implementation->stream_xor_ic(c, m, mlen, n, ic, k);
+    return implementation_c->stream_xor_ic(c, m, mlen, n, ic, k);
 }
 
 int
@@ -86,7 +86,7 @@ crypto_stream_chacha20_xor(unsigned char *c, const unsigned char *m,
         //sodium_misuse();
         printf("MISUSE\n");
     }
-    return implementation->stream_xor_ic(c, m, mlen, n, 0U, k);
+    return implementation_c->stream_xor_ic(c, m, mlen, n, 0U, k);
 }
 
 int
@@ -97,7 +97,7 @@ crypto_stream_chacha20_ietf_ext(unsigned char *c, unsigned long long clen,
         //sodium_misuse();
         printf("MISUSE\n");
     }
-    return implementation->stream_ietf_ext(c, clen, n, k);
+    return implementation_c->stream_ietf_ext(c, clen, n, k);
 }
 
 int
@@ -110,7 +110,7 @@ crypto_stream_chacha20_ietf_ext_xor_ic(unsigned char *c, const unsigned char *m,
         //sodium_misuse();
         printf("MISUSE\n");
     }
-    return implementation->stream_ietf_ext_xor_ic(c, m, mlen, n, ic, k);
+    return implementation_c->stream_ietf_ext_xor_ic(c, m, mlen, n, ic, k);
 }
 
 static int
@@ -122,7 +122,7 @@ crypto_stream_chacha20_ietf_ext_xor(unsigned char *c, const unsigned char *m,
         //sodium_misuse();
         printf("MISUSE\n");
     }
-    return implementation->stream_ietf_ext_xor_ic(c, m, mlen, n, 0U, k);
+    return implementation_c->stream_ietf_ext_xor_ic(c, m, mlen, n, 0U, k);
 }
 
 int
@@ -177,7 +177,7 @@ crypto_stream_chacha20_keygen(unsigned char k[crypto_stream_chacha20_KEYBYTES])
 int
 _crypto_stream_chacha20_pick_best_implementation(void)
 {
-    implementation = &crypto_stream_chacha20_ref_implementation;
+    implementation_c = &crypto_stream_chacha20_ref_implementation;
 #if defined(HAVE_AVX2INTRIN_H) && defined(HAVE_EMMINTRIN_H) && \
     defined(HAVE_TMMINTRIN_H) && defined(HAVE_SMMINTRIN_H)
     if (sodium_runtime_has_avx2()) {

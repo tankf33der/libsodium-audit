@@ -4,7 +4,7 @@ Lets check libsodium library for fun and profit.
 
 Take tests from 'test/default/' and modify to be able run under control.
 
-Items below passed SANs, TIS, compcert:
+Items below passed SANs, TIS, compcert-interp:
 
 [siphash24](https://github.com/jedisct1/libsodium/blob/master/test/default/shorthash.c)
 
