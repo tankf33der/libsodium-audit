@@ -6,7 +6,7 @@ memory:
 undefined:
 	clang -Wall -Wextra -fsanitize=undefined *.c && ./a.out
 mike:
-	cat my_utils.c shorthash_siphashx24_ref.c test_siphashx24.c >> mike.c
+	cat *.c >> mike.c
 ccomp: mike
 	ccomp mike.c && ./a.out
 interp: mike
