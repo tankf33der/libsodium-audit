@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <errno.h>
+//#include <errno.h>
 #include <string.h>
 
 
@@ -123,7 +123,7 @@ sodium_hex2bin(unsigned char *const bin, const size_t bin_maxlen,
         c_val = (c_num0 & c_num) | (c_alpha0 & c_alpha);
         if (bin_pos >= bin_maxlen) {
             ret   = -1;
-            errno = ERANGE;
+            //errno = ERANGE;
             break;
         }
         if (state == 0U) {
@@ -136,7 +136,7 @@ sodium_hex2bin(unsigned char *const bin, const size_t bin_maxlen,
     }
     if (state != 0U) {
         hex_pos--;
-        errno = EINVAL;
+        //errno = EINVAL;
         ret = -1;
     }
     if (ret != 0) {
@@ -145,7 +145,7 @@ sodium_hex2bin(unsigned char *const bin, const size_t bin_maxlen,
     if (hex_end != NULL) {
         *hex_end = &hex[hex_pos];
     } else if (hex_pos != hex_len) {
-        errno = EINVAL;
+        //errno = EINVAL;
         ret = -1;
     }
     if (bin_len != NULL) {
