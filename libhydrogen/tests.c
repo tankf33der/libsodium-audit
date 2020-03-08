@@ -88,11 +88,11 @@ test_hash(void)
     size_t           i;
 
     memset(dk, 0, sizeof dk);
-    hydro_random_buf_deterministic(key, sizeof key, dk);
+    hydro_random_buf(key, sizeof key);
     hydro_increment(dk, sizeof dk);
     hydro_hash_init(&st, ctx, key);
     for (i = 0; i <= sizeof msg; i++) {
-        hydro_random_buf_deterministic(msg, i, dk);
+        hydro_random_buf_deterministic(msg, i);
         hydro_increment(dk, sizeof dk);
         hydro_hash_update(&st, msg, i);
     }
@@ -178,9 +178,9 @@ test_secretbox(void)
     uint8_t probe[hydro_secretbox_PROBEBYTES];
 
     memset(dk, 0, sizeof dk);
-    hydro_random_buf_deterministic(m, sizeof m, dk);
+    hydro_random_buf_deterministic(m, sizeof m);
     hydro_increment(dk, sizeof dk);
-    hydro_random_buf_deterministic(key, sizeof key, dk);
+    hydro_random_buf_deterministic(key, sizeof key);
     hydro_increment(dk, sizeof dk);
     hydro_secretbox_encrypt(c, m, sizeof m, 0, ctx, key);
     assert(hydro_secretbox_decrypt(m2, c, sizeof c, 0, ctx, key) == 0);
@@ -222,7 +222,7 @@ test_kdf(void)
     char    subkey4_hex[50 * 2 + 1];
 
     memset(dk, 0, sizeof dk);
-    hydro_random_buf_deterministic(key, sizeof key, dk);
+    hydro_random_buf_deterministic(key, sizeof key);
     hydro_kdf_derive_from_key(subkey1, sizeof subkey1, 1, ctx, key);
     hydro_kdf_derive_from_key(subkey2, sizeof subkey2, 2, ctx, key);
     hydro_kdf_derive_from_key(subkey3, sizeof subkey3, 0, ctx, key);

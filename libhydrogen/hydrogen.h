@@ -47,8 +47,8 @@ uint32_t hydro_random_uniform(const uint32_t upper_bound);
 
 void hydro_random_buf(void *out, size_t out_len);
 
-void hydro_random_buf_deterministic(void *out, size_t out_len,
-                                    const uint8_t seed[hydro_random_SEEDBYTES]);
+void hydro_random_buf_deterministic(void *out, size_t out_len);
+                                    //const uint8_t seed[hydro_random_SEEDBYTES]);
 
 void hydro_random_ratchet(void);
 

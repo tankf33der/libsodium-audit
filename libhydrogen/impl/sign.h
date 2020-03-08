@@ -136,7 +136,7 @@ hydro_sign_keygen_deterministic(hydro_sign_keypair *kp, const uint8_t seed[hydro
     uint8_t *pk_copy = &kp->sk[hydro_x25519_SECRETKEYBYTES];
 
     COMPILER_ASSERT(hydro_sign_SEEDBYTES >= hydro_random_SEEDBYTES);
-    hydro_random_buf_deterministic(kp->sk, hydro_x25519_SECRETKEYBYTES, seed);
+    hydro_random_buf_deterministic(kp->sk, hydro_x25519_SECRETKEYBYTES);
     hydro_x25519_scalarmult_base_uniform(kp->pk, kp->sk);
     memcpy(pk_copy, kp->pk, hydro_x25519_PUBLICKEYBYTES);
 }

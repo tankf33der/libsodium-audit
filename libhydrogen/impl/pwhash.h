@@ -85,7 +85,7 @@ hydro_pwhash_deterministic(uint8_t *h, size_t h_len, const char *passwd, size_t 
                            memlimit, threads) != 0) {
         return -1;
     }
-    hydro_random_buf_deterministic(h, h_len, seed);
+    hydro_random_buf_deterministic(h, h_len);
     hydro_memzero(seed, sizeof seed);
 
     return 0;
