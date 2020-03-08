@@ -20,6 +20,7 @@ streq(const char *expected, const char *found)
 }
 #define assert_streq(EXPECTED, FOUND) assert(streq((EXPECTED), (FOUND)))
 
+/*
 static void
 test_randombytes(void)
 {
@@ -73,6 +74,7 @@ test_randombytes(void)
         }
     }
 }
+*/
 
 static void
 test_hash(void)
@@ -116,6 +118,7 @@ test_hash(void)
     hydro_bin2hex(hex, sizeof hex, h, hydro_hash_BYTES);
     assert_streq("d57a9800549bb4bab6a06fa6e16e08aad68d7d4313fb69a81b9f5d5af375dbe7", hex);
 }
+
 
 static void
 test_core(void)
@@ -456,10 +459,10 @@ main(void)
     _set_abort_behavior(0, _WRITE_ABORT_MSG | _CALL_REPORTFAULT);
 #endif
 
-    int ret;
+    //int ret;
 
-    ret = hydro_init();
-    assert(ret == 0);
+    //ret = hydro_init();
+    //assert(ret == 0);
 
     test_core();
     test_hash();
@@ -469,7 +472,7 @@ main(void)
     test_kx_xx();
     test_kx_nk();
     test_pwhash();
-    test_randombytes();
+    //test_randombytes();
     test_secretbox();
     test_sign();
 	printf("libhydrogen\n");
