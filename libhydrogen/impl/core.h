@@ -93,7 +93,7 @@ hydro_hex2bin(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len, 
         c_val = (uint8_t)((c_num0 & c_num) | (c_alpha0 & c_alpha));
         if (bin_pos >= bin_maxlen) {
             ret   = -1;
-            errno = ERANGE;
+            //errno = ERANGE;
             break;
         }
         if (state == 0U) {
@@ -106,7 +106,7 @@ hydro_hex2bin(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len, 
     }
     if (state != 0U) {
         hex_pos--;
-        errno = EINVAL;
+        //errno = EINVAL;
         ret   = -1;
     }
     if (ret != 0) {
@@ -115,7 +115,7 @@ hydro_hex2bin(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len, 
     if (hex_end_p != NULL) {
         *hex_end_p = &hex[hex_pos];
     } else if (hex_pos != hex_len) {
-        errno = EINVAL;
+        //errno = EINVAL;
         ret   = -1;
     }
     if (ret != 0) {
