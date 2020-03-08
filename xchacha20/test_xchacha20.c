@@ -180,7 +180,7 @@ tv_stream_xchacha20(void)
     assert(memcmp(out, out2, 192) == 0);
     hex = (char *) malloc(192 * 2 + 1);
     sodium_bin2hex(hex, 192 * 2 + 1, out, 192);
-    printf("%s\n", hex);
+    //printf("%s\n", hex);
 
     memset(key, 0, crypto_stream_xchacha20_KEYBYTES);
     crypto_stream_xchacha20_keygen(key);
@@ -434,7 +434,7 @@ tv_box_xchacha20poly1305(void)
 int
 main(void)
 {
-    //tv_hchacha20();
+    tv_hchacha20();
     tv_stream_xchacha20();
     //tv_secretbox_xchacha20poly1305();
     //tv_box_xchacha20poly1305();
