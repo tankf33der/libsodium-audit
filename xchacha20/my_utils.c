@@ -188,3 +188,23 @@ memcmp (const void *str1, const void *str2, size_t count)
 }
 
 
+void *
+memset(void *__s, int __c, size_t __n)
+{
+
+	if (__n != 0) {
+		char *d = __s;
+
+		do {
+			*d++ = __c;
+		} while (--__n != 0);
+	}
+	return (__s);
+}
+
+
+void
+sodium_memzero(void * const pnt, const size_t len)
+{
+	memset(pnt, 0, len);
+}

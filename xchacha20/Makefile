@@ -7,9 +7,9 @@ undefined:
 	clang -Wall -Wextra -fsanitize=undefined *.c && ./a.out
 mike:
 	cat *.c >> mike.c
-ccomp: mike
+ccomp: clean mike
 	ccomp mike.c && ./a.out
-interp: mike
+interp: clean mike
 	ccomp -interp -quiet mike.c
 clean:
 	rm -rf *.o *.out mike.c
