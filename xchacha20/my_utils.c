@@ -187,3 +187,21 @@ memcmp (const void *str1, const void *str2, size_t count)
   return 0;
 }
 
+
+#define LOAD32_LE(SRC) load32_le(SRC)
+static inline uint32_t
+load32_le(const uint8_t src[4])
+{
+#ifdef NATIVE_LITTLE_ENDIAN
+    uint32_t w;
+    memcpy(&w, src, sizeof w);
+    return w;
+#else
+    uint32_t w = (uint32_t) src[0];
+    w |= (uint32_t) src[1] <<  8;
+    w |= (uint32_t) src[2] << 16;
+    w |= (uint32_t) src[3] << 24;
+    return w;
+#endif
+}
+

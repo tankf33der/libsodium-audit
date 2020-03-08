@@ -1,4 +1,4 @@
-all: clean address memory undefined ccomp interp
+all: clean address memory undefined
 address:
 	clang -Wall -Wextra -fsanitize=address *.c && ./a.out
 memory:

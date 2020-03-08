@@ -84,6 +84,7 @@ tv_hchacha20(void)
     printf("tv_hchacha20: ok\n");
 }
 
+/*
 #define XCHACHA20_OUT_MAX 100
 
 typedef struct XChaCha20TV_ {
@@ -422,13 +423,15 @@ tv_box_xchacha20poly1305(void)
     printf("tv_box_xchacha20poly1305: ok\n");
 }
 
+*/
+
 int
 main(void)
 {
     tv_hchacha20();
-    tv_stream_xchacha20();
-    tv_secretbox_xchacha20poly1305();
-    tv_box_xchacha20poly1305();
+    //tv_stream_xchacha20();
+    //tv_secretbox_xchacha20poly1305();
+    //tv_box_xchacha20poly1305();
 
     return 0;
 }
