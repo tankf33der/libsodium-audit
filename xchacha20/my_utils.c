@@ -159,7 +159,9 @@ int
 sodium_is_zero(const unsigned char *n, const size_t nlen)
 {
     size_t                 i;
-    volatile unsigned char d = 0U;
+    //volatile unsigned char d = 0U;
+	// XXX Fix for TIS
+	uint32_t d = 0;
 
     for (i = 0U; i < nlen; i++) {
         d |= n[i];
