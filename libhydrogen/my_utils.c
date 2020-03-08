@@ -14,9 +14,6 @@ typedef uint64_t u64;
 
 u64 random_state = 984574;
 
-#define hydro_random_buf p_random
-#define hydro_random_buf_deterministic p_random
-
 // Pseudo-random 64 bit number, based on xorshift*
 u64 rand64()
 {
@@ -27,7 +24,14 @@ u64 rand64()
 }
 
 
-void p_random(u8 *stream, size_t size)
+void hydro_random_buf(u8 *stream, size_t size)
+{
+    FOR (i, 0, size) {
+        stream[i] = (u8)rand64();
+    }
+}
+
+void hydro_random_buf_deterministic(u8 *stream, size_t size)
 {
     FOR (i, 0, size) {
         stream[i] = (u8)rand64();

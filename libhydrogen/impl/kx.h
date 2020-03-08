@@ -141,6 +141,8 @@ hydro_kx_keygen(hydro_kx_keypair *static_kp)
 void
 hydro_kx_keygen_deterministic(hydro_kx_keypair *static_kp, const uint8_t seed[hydro_kx_SEEDBYTES])
 {
+	uint8_t i = seed[0];
+	i++;
     COMPILER_ASSERT(hydro_kx_SEEDBYTES >= hydro_random_SEEDBYTES);
     hydro_random_buf_deterministic(static_kp->sk, hydro_kx_SECRETKEYBYTES);
     if (hydro_x25519_scalarmult_base(static_kp->pk, static_kp->sk) != 0) {
