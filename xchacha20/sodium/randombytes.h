@@ -32,7 +32,7 @@ SODIUM_EXPORT
 size_t randombytes_seedbytes(void);
 
 SODIUM_EXPORT
-void randombytes_buf(void * const buf, const size_t size)
+void randombytes_buf(uint8_t *buf, const size_t size)
             __attribute__ ((nonnull));
 
 SODIUM_EXPORT
