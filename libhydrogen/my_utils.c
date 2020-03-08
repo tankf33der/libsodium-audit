@@ -56,3 +56,10 @@ hydro_random_uniform(const uint32_t upper_bound)
 
     return r % upper_bound;
 }
+
+void* memset(void *__s, int __c, size_t __n)
+{
+    unsigned char* p=__s;
+    while(__n--)
+        *p++ = (unsigned char)__c;
+}
