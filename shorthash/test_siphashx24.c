@@ -96,10 +96,14 @@ main(void)
 			strlen(tests[i].tt), NULL, NULL, NULL);
         in[i] = (unsigned char) i;
         crypto_shorthash_siphashx24(out, in, (unsigned long long) i, k);
+		/*
         for (j = 0; j < crypto_shorthash_siphashx24_BYTES; ++j) {
             printf("%02x", (unsigned int) out[j]);
+        }*/
+        if (memcmp(out, r, 16) != 0) {
+        	printf("fail\n");
         }
-        printf("\n");
+        //printf("\n");
     }
     /*
     assert(crypto_shorthash_siphashx24_KEYBYTES >= crypto_shorthash_siphash24_KEYBYTES);
@@ -107,5 +111,6 @@ main(void)
     assert(crypto_shorthash_siphashx24_bytes() == crypto_shorthash_siphashx24_BYTES);
     assert(crypto_shorthash_siphashx24_keybytes() == crypto_shorthash_siphashx24_KEYBYTES);
 	*/
+	printf("OK\n");
     return 0;
 }

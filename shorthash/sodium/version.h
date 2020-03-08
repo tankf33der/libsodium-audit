@@ -4,8 +4,9 @@
 
 #include "export.h"
 
-#define SODIUM_VERSION_STRING "@VERSION@"
+#define SODIUM_VERSION_STRING "0.1.18"
 
+/*
 #define SODIUM_LIBRARY_VERSION_MAJOR @SODIUM_LIBRARY_VERSION_MAJOR@
 #define SODIUM_LIBRARY_VERSION_MINOR @SODIUM_LIBRARY_VERSION_MINOR@
 @SODIUM_LIBRARY_MINIMAL_DEF@
@@ -28,6 +29,9 @@ int         sodium_library_minimal(void);
 
 #ifdef __cplusplus
 }
+
+
 #endif
+*/
 
 #endif
