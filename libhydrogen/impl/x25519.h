@@ -4,11 +4,16 @@
  * MIT License (MIT)
  */
 
+/*
 #if defined(__GNUC__) && defined(__SIZEOF_INT128__)
 #define hydro_x25519_WBITS 64
 #else
 #define hydro_x25519_WBITS 32
 #endif
+*/
+
+#define hydro_x25519_WBITS 32
+
 
 #if hydro_x25519_WBITS == 64
 typedef uint64_t    hydro_x25519_limb_t;

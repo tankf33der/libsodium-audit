@@ -1,3 +1,5 @@
+#undef __SSE2__
+
 #ifdef __SSE2__
 #include "gimli-core/sse2.h"
 #else

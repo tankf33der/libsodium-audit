@@ -24,10 +24,10 @@ u64 rand64()
 }
 
 
-void hydro_random_buf(u8 *stream, size_t size)
+void hydro_random_buf(u8 *out, size_t size)
 {
     FOR (i, 0, size) {
-        stream[i] = (u8)rand64();
+        out[i] = (u8)rand64();
     }
 }
 
