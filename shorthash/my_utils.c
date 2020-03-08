@@ -1,3 +1,7 @@
+#include <stddef.h>
+#include <errno.h>
+#include <string.h>
+
 int
 sodium_hex2bin(unsigned char *const bin, const size_t bin_maxlen,
                const char *const hex, const size_t hex_len,
