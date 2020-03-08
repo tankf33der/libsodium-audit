@@ -144,6 +144,7 @@ tv_stream_xchacha20(void)
     }
 
 /*
+	XXX: against compcert on zero malloc-free
     out2 = (unsigned char *) malloc(0);
     crypto_stream_xchacha20(out2, 0, nonce, key);
     crypto_stream_xchacha20_xor(out2, out2, 0, nonce, key);
@@ -151,6 +152,7 @@ tv_stream_xchacha20(void)
     free(out2);
     free(out);
 */
+	free(out);
 
     out = (unsigned char *) malloc(64);
     out2 = (unsigned char *) malloc(128);
