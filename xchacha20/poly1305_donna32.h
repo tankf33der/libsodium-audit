@@ -13,7 +13,42 @@
 
 //#include "private/common.h"
 
+#define LOAD32_LE3(SRC) load32_le3(SRC)
+static inline uint32_t
+load32_le3(const uint8_t src[4])
+{
+#ifdef NATIVE_LITTLE_ENDIAN
+    uint32_t w;
+    memcpy(&w, src, sizeof w);
+    return w;
+#else
+    uint32_t w = (uint32_t) src[0];
+    w |= (uint32_t) src[1] <<  8;
+    w |= (uint32_t) src[2] << 16;
+    w |= (uint32_t) src[3] << 24;
+    return w;
+#endif
+}
+
+
+#define STORE32_LE3(DST, W) store32_le3((DST), (W))
+static inline void
+store32_le3(uint8_t dst[4], uint32_t w)
+{
+#ifdef NATIVE_LITTLE_ENDIAN
+    memcpy(dst, &w, sizeof w);
+#else
+    dst[0] = (uint8_t) w; w >>= 8;
+    dst[1] = (uint8_t) w; w >>= 8;
+    dst[2] = (uint8_t) w; w >>= 8;
+    dst[3] = (uint8_t) w;
+#endif
+}
+
+
 #define poly1305_block_size 16
+
+
 
 /* 17 + sizeof(unsigned long long) + 14*sizeof(unsigned long) */
 typedef struct poly1305_state_internal_t {
@@ -29,11 +64,11 @@ static void
 poly1305_init(poly1305_state_internal_t *st, const unsigned char key[32])
 {
     /* r &= 0xffffffc0ffffffc0ffffffc0fffffff - wiped after finalization */
-    st->r[0] = (LOAD32_LE(&key[0])) & 0x3ffffff;
-    st->r[1] = (LOAD32_LE(&key[3]) >> 2) & 0x3ffff03;
-    st->r[2] = (LOAD32_LE(&key[6]) >> 4) & 0x3ffc0ff;
-    st->r[3] = (LOAD32_LE(&key[9]) >> 6) & 0x3f03fff;
-    st->r[4] = (LOAD32_LE(&key[12]) >> 8) & 0x00fffff;
+    st->r[0] = (LOAD32_LE3(&key[0])) & 0x3ffffff;
+    st->r[1] = (LOAD32_LE3(&key[3]) >> 2) & 0x3ffff03;
+    st->r[2] = (LOAD32_LE3(&key[6]) >> 4) & 0x3ffc0ff;
+    st->r[3] = (LOAD32_LE3(&key[9]) >> 6) & 0x3f03fff;
+    st->r[4] = (LOAD32_LE3(&key[12]) >> 8) & 0x00fffff;
 
     /* h = 0 */
     st->h[0] = 0;
@@ -43,10 +78,10 @@ poly1305_init(poly1305_state_internal_t *st, const unsigned char key[32])
     st->h[4] = 0;
 
     /* save pad for later */
-    st->pad[0] = LOAD32_LE(&key[16]);
-    st->pad[1] = LOAD32_LE(&key[20]);
-    st->pad[2] = LOAD32_LE(&key[24]);
-    st->pad[3] = LOAD32_LE(&key[28]);
+    st->pad[0] = LOAD32_LE3(&key[16]);
+    st->pad[1] = LOAD32_LE3(&key[20]);
+    st->pad[2] = LOAD32_LE3(&key[24]);
+    st->pad[3] = LOAD32_LE3(&key[28]);
 
     st->leftover = 0;
     st->final    = 0;
@@ -82,11 +117,11 @@ poly1305_blocks(poly1305_state_internal_t *st, const unsigned char *m,
 
     while (bytes >= poly1305_block_size) {
         /* h += m[i] */
-        h0 += (LOAD32_LE(m + 0)) & 0x3ffffff;
-        h1 += (LOAD32_LE(m + 3) >> 2) & 0x3ffffff;
-        h2 += (LOAD32_LE(m + 6) >> 4) & 0x3ffffff;
-        h3 += (LOAD32_LE(m + 9) >> 6) & 0x3ffffff;
-        h4 += (LOAD32_LE(m + 12) >> 8) | hibit;
+        h0 += (LOAD32_LE3(m + 0)) & 0x3ffffff;
+        h1 += (LOAD32_LE3(m + 3) >> 2) & 0x3ffffff;
+        h2 += (LOAD32_LE3(m + 6) >> 4) & 0x3ffffff;
+        h3 += (LOAD32_LE3(m + 9) >> 6) & 0x3ffffff;
+        h4 += (LOAD32_LE3(m + 12) >> 8) | hibit;
 
         /* h *= r */
         d0 = ((unsigned long long) h0 * r0) + ((unsigned long long) h1 * s4) +
@@ -225,10 +260,10 @@ poly1305_finish(poly1305_state_internal_t *st, unsigned char mac[16])
     f  = (unsigned long long) h3 + st->pad[3] + (f >> 32);
     h3 = (unsigned long) f;
 
-    STORE32_LE(mac + 0, (uint32_t) h0);
-    STORE32_LE(mac + 4, (uint32_t) h1);
-    STORE32_LE(mac + 8, (uint32_t) h2);
-    STORE32_LE(mac + 12, (uint32_t) h3);
+    STORE32_LE3(mac + 0, (uint32_t) h0);
+    STORE32_LE3(mac + 4, (uint32_t) h1);
+    STORE32_LE3(mac + 8, (uint32_t) h2);
+    STORE32_LE3(mac + 12, (uint32_t) h3);
 
     /* zero out the state */
     sodium_memzero((void *) st, sizeof *st);

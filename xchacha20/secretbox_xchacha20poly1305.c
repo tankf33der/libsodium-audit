@@ -1,4 +1,4 @@
-
+#include <stdio.h>
 #include <assert.h>
 #include <limits.h>
 #include <stdint.h>
@@ -79,7 +79,8 @@ crypto_secretbox_xchacha20poly1305_easy(unsigned char *c,
                                         const unsigned char *k)
 {
     if (mlen > crypto_secretbox_xchacha20poly1305_MESSAGEBYTES_MAX) {
-        sodium_misuse();
+        //sodium_misuse();
+        printf("MISUSE\n");
     }
     return crypto_secretbox_xchacha20poly1305_detached
         (c + crypto_secretbox_xchacha20poly1305_MACBYTES, c, m, mlen, n, k);
