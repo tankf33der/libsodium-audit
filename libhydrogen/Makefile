@@ -11,6 +11,6 @@ mike:
 ccomp: mike
 	ccomp mike.c && ./a.out
 interp: mike
-	ccomp -interp -quiet mike.c
+	ccomp -interp mike.c
 clean:
 	rm -rf *.o *.out mike.c
