@@ -1,3 +1,7 @@
+February, 2020.
+
 Lets check libsodium library for fun and profit.
 
-TIS, compcert, SANs.
+Take tests from 'test/default/' and modify to be able run under TIS, compcert, SANs.
+
+Nightmare mode, you need a lot of energy, dont try at home.
