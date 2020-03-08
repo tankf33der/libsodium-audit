@@ -490,10 +490,10 @@ main(void)
     //test_kx_kk();
     //test_kx_xx();
     //test_kx_nk();
-    test_pwhash();
-    //////test_randombytes();
-    test_secretbox();
-    test_sign();
+    //test_pwhash();
+    //XXX////test_randombytes();
+    //test_secretbox();
+    //test_sign();
 
 	printf("libhydrogen\n");
     return 0;
