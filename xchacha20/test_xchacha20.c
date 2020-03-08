@@ -43,11 +43,11 @@ tv_hchacha20(void)
     unsigned char     *out2;
     size_t             i;
 
-    constant = (unsigned char *) sodium_malloc(crypto_core_hchacha20_CONSTBYTES);
-    key = (unsigned char *) sodium_malloc(crypto_core_hchacha20_KEYBYTES);
-    in = (unsigned char *) sodium_malloc(crypto_core_hchacha20_INPUTBYTES);
-    out = (unsigned char *) sodium_malloc(crypto_core_hchacha20_OUTPUTBYTES);
-    out2 = (unsigned char *) sodium_malloc(crypto_core_hchacha20_OUTPUTBYTES);
+    constant = (unsigned char *) malloc(crypto_core_hchacha20_CONSTBYTES);
+    key = (unsigned char *) malloc(crypto_core_hchacha20_KEYBYTES);
+    in = (unsigned char *) malloc(crypto_core_hchacha20_INPUTBYTES);
+    out = (unsigned char *) malloc(crypto_core_hchacha20_OUTPUTBYTES);
+    out2 = (unsigned char *) malloc(crypto_core_hchacha20_OUTPUTBYTES);
     for (i = 0; i < (sizeof tvs) / (sizeof tvs[0]); i++) {
         tv = &tvs[i];
         sodium_hex2bin(key, crypto_core_hchacha20_KEYBYTES,
@@ -70,11 +70,11 @@ tv_hchacha20(void)
     crypto_core_hchacha20(out2, in, key, constant);
     assert(memcmp(out, out2, crypto_core_hchacha20_OUTPUTBYTES) == 0);
 
-    sodium_free(out2);
-    sodium_free(out);
-    sodium_free(in);
-    sodium_free(key);
-    sodium_free(constant);
+    free(out2);
+    free(out);
+    free(in);
+    free(key);
+    free(constant);
 
     assert(crypto_core_hchacha20_outputbytes() == crypto_core_hchacha20_OUTPUTBYTES);
     assert(crypto_core_hchacha20_inputbytes() == crypto_core_hchacha20_INPUTBYTES);
@@ -116,9 +116,9 @@ tv_stream_xchacha20(void)
     size_t             out_len;
     size_t             i;
 
-    key = (unsigned char *) sodium_malloc(crypto_stream_xchacha20_KEYBYTES);
-    nonce = (unsigned char *) sodium_malloc(crypto_stream_xchacha20_NONCEBYTES);
-    out = (unsigned char *) sodium_malloc(XCHACHA20_OUT_MAX);
+    key = (unsigned char *) malloc(crypto_stream_xchacha20_KEYBYTES);
+    nonce = (unsigned char *) malloc(crypto_stream_xchacha20_NONCEBYTES);
+    out = (unsigned char *) malloc(XCHACHA20_OUT_MAX);
     for (i = 0; i < (sizeof tvs) / (sizeof tvs[0]); i++) {
         tv = &tvs[i];
 
@@ -128,7 +128,7 @@ tv_stream_xchacha20(void)
                        tv->nonce, strlen(tv->nonce), NULL, NULL, NULL);
         sodium_hex2bin(out, XCHACHA20_OUT_MAX,
                        tv->out, strlen(tv->out), NULL, &out_len, NULL);
-        out2 = (unsigned char *) sodium_malloc(out_len);
+        out2 = (unsigned char *) malloc(out_len);
         crypto_stream_xchacha20(out2, out_len, nonce, key);
         assert(memcmp(out, out2, out_len) == 0);
         crypto_stream_xchacha20_xor(out2, out, out_len, nonce, key);
@@ -139,29 +139,29 @@ tv_stream_xchacha20(void)
         assert(!sodium_is_zero(out2, out_len));
         crypto_stream_xchacha20_xor(out, out, out_len, nonce, key);
         assert(sodium_is_zero(out, out_len));
-        sodium_free(out2);
+        free(out2);
     }
 
-    out2 = (unsigned char *) sodium_malloc(0);
+    out2 = (unsigned char *) malloc(0);
     crypto_stream_xchacha20(out2, 0, nonce, key);
     crypto_stream_xchacha20_xor(out2, out2, 0, nonce, key);
     crypto_stream_xchacha20_xor_ic(out2, out2, 0, nonce, 1, key);
-    sodium_free(out2);
-    sodium_free(out);
+    free(out2);
+    free(out);
 
-    out = (unsigned char *) sodium_malloc(64);
-    out2 = (unsigned char *) sodium_malloc(128);
+    out = (unsigned char *) malloc(64);
+    out2 = (unsigned char *) malloc(128);
     randombytes_buf(out, 64);
     randombytes_buf(out2, 64);
     memcpy(out2 + 64, out, 64);
     crypto_stream_xchacha20_xor_ic(out, out, 64, nonce, 1, key);
     crypto_stream_xchacha20_xor(out2, out2, 128, nonce, key);
     assert(memcmp(out, out2 + 64, 64) == 0);
-    sodium_free(out);
-    sodium_free(out2);
+    free(out);
+    free(out2);
 
-    out = (unsigned char *) sodium_malloc(192);
-    out2 = (unsigned char *) sodium_malloc(192);
+    out = (unsigned char *) malloc(192);
+    out2 = (unsigned char *) malloc(192);
     memset(out, 0, 192);
     memset(out2, 0, 192);
     crypto_stream_xchacha20_xor_ic(out2, out2, 192, nonce,
@@ -173,7 +173,7 @@ tv_stream_xchacha20(void)
     crypto_stream_xchacha20_xor_ic(out + 128, out + 128, 64, nonce,
                                    (1ULL << 32) + 1, key);
     assert(memcmp(out, out2, 192) == 0);
-    hex = (char *) sodium_malloc(192 * 2 + 1);
+    hex = (char *) malloc(192 * 2 + 1);
     sodium_bin2hex(hex, 192 * 2 + 1, out, 192);
     printf("%s\n", hex);
 
@@ -181,12 +181,12 @@ tv_stream_xchacha20(void)
     crypto_stream_xchacha20_keygen(key);
     assert(sodium_is_zero(key, crypto_stream_xchacha20_KEYBYTES) == 0);
 
-    sodium_free(hex);
-    sodium_free(out);
-    sodium_free(out2);
+    free(hex);
+    free(out);
+    free(out2);
 
-    sodium_free(nonce);
-    sodium_free(key);
+    free(nonce);
+    free(key);
 
     assert(crypto_stream_xchacha20_keybytes() == crypto_stream_xchacha20_KEYBYTES);
     assert(crypto_stream_xchacha20_noncebytes() == crypto_stream_xchacha20_NONCEBYTES);
@@ -227,22 +227,22 @@ tv_secretbox_xchacha20poly1305(void)
     size_t                     n;
     size_t                     i;
 
-    key = (unsigned char *) sodium_malloc
+    key = (unsigned char *) malloc
         (crypto_secretbox_xchacha20poly1305_KEYBYTES);
-    nonce = (unsigned char *) sodium_malloc
+    nonce = (unsigned char *) malloc
         (crypto_secretbox_xchacha20poly1305_NONCEBYTES);
     for (i = 0; i < (sizeof tvs) / (sizeof tvs[0]); i++) {
         tv = &tvs[i];
         m_len = strlen(tv->m) / 2;
-        m = (unsigned char *) sodium_malloc(m_len);
+        m = (unsigned char *) malloc(m_len);
         sodium_hex2bin(key, crypto_secretbox_xchacha20poly1305_KEYBYTES,
                        tv->key, strlen(tv->key), NULL, NULL, NULL);
         sodium_hex2bin(nonce, crypto_secretbox_xchacha20poly1305_NONCEBYTES,
                        tv->nonce, strlen(tv->nonce), NULL, NULL, NULL);
         sodium_hex2bin(m, m_len, tv->m, strlen(tv->m), NULL, NULL, NULL);
-        out = (unsigned char *) sodium_malloc
+        out = (unsigned char *) malloc
             (crypto_secretbox_xchacha20poly1305_MACBYTES + m_len);
-        out2 = (unsigned char *) sodium_malloc
+        out2 = (unsigned char *) malloc
             (crypto_secretbox_xchacha20poly1305_MACBYTES + m_len);
         sodium_hex2bin(out, crypto_secretbox_xchacha20poly1305_MACBYTES + m_len,
                        tv->out, strlen(tv->out), NULL, NULL, NULL);
@@ -287,12 +287,12 @@ tv_secretbox_xchacha20poly1305(void)
              m_len, nonce, key);
         assert(memcmp(out, out2,
                       crypto_secretbox_xchacha20poly1305_MACBYTES + m_len) == 0);
-        sodium_free(out);
-        sodium_free(out2);
-        sodium_free(m);
+        free(out);
+        free(out2);
+        free(m);
     }
-    sodium_free(nonce);
-    sodium_free(key);
+    free(nonce);
+    free(key);
 
     assert(crypto_secretbox_xchacha20poly1305_keybytes() == crypto_secretbox_xchacha20poly1305_KEYBYTES);
     assert(crypto_secretbox_xchacha20poly1305_noncebytes() == crypto_secretbox_xchacha20poly1305_NONCEBYTES);
@@ -318,17 +318,17 @@ tv_box_xchacha20poly1305(void)
     size_t         m_len;
     int            i;
 
-    pk = (unsigned char *) sodium_malloc(crypto_box_curve25519xchacha20poly1305_PUBLICKEYBYTES);
-    sk = (unsigned char *) sodium_malloc(crypto_box_curve25519xchacha20poly1305_SECRETKEYBYTES);
-    nonce = (unsigned char *) sodium_malloc(crypto_box_curve25519xchacha20poly1305_NONCEBYTES);
-    mac = (unsigned char *) sodium_malloc(crypto_box_curve25519xchacha20poly1305_MACBYTES);
-    pc = (unsigned char *) sodium_malloc(crypto_box_curve25519xchacha20poly1305_BEFORENMBYTES);
+    pk = (unsigned char *) malloc(crypto_box_curve25519xchacha20poly1305_PUBLICKEYBYTES);
+    sk = (unsigned char *) malloc(crypto_box_curve25519xchacha20poly1305_SECRETKEYBYTES);
+    nonce = (unsigned char *) malloc(crypto_box_curve25519xchacha20poly1305_NONCEBYTES);
+    mac = (unsigned char *) malloc(crypto_box_curve25519xchacha20poly1305_MACBYTES);
+    pc = (unsigned char *) malloc(crypto_box_curve25519xchacha20poly1305_BEFORENMBYTES);
     for (i = 0; i < 10; i++) {
         m_len = (i == 0) ? 0 : randombytes_uniform(150);
-        m = (unsigned char *) sodium_malloc(m_len);
-        m2 = (unsigned char *) sodium_malloc(m_len);
+        m = (unsigned char *) malloc(m_len);
+        m2 = (unsigned char *) malloc(m_len);
 
-        out = (unsigned char *) sodium_malloc
+        out = (unsigned char *) malloc
             (crypto_box_curve25519xchacha20poly1305_MACBYTES + m_len);
         randombytes_buf(nonce, crypto_box_curve25519xchacha20poly1305_NONCEBYTES);
         randombytes_buf(m, m_len);
@@ -349,9 +349,9 @@ tv_box_xchacha20poly1305(void)
                (m2, out, crypto_box_curve25519xchacha20poly1305_MACBYTES + m_len,
                 nonce, pk, sk) == 0);
         assert(memcmp(m2, m, m_len) == 0);
-        sodium_free(out);
+        free(out);
 
-        out = (unsigned char *) sodium_malloc
+        out = (unsigned char *) malloc
             (crypto_box_curve25519xchacha20poly1305_MACBYTES + m_len);
         assert(crypto_box_curve25519xchacha20poly1305_beforenm(pc, small_order_p, sk) == -1);
         assert(crypto_box_curve25519xchacha20poly1305_beforenm(pc, pk, sk) == 0);
@@ -369,9 +369,9 @@ tv_box_xchacha20poly1305(void)
                (m2, out, crypto_box_curve25519xchacha20poly1305_MACBYTES + m_len,
                 nonce, pc) == 0);
         assert(memcmp(m2, m, m_len) == 0);
-        sodium_free(out);
+        free(out);
 
-        out = (unsigned char *) sodium_malloc(m_len);
+        out = (unsigned char *) malloc(m_len);
         assert(crypto_box_curve25519xchacha20poly1305_detached(out, mac, m, m_len,
                                                                nonce, small_order_p, sk) == -1);
         assert(crypto_box_curve25519xchacha20poly1305_detached(out, mac, m, m_len,
@@ -380,23 +380,23 @@ tv_box_xchacha20poly1305(void)
                (m2, out, mac, m_len, nonce, small_order_p, sk) == -1);
         assert(crypto_box_curve25519xchacha20poly1305_open_detached
                (m2, out, mac, m_len, nonce, pk, sk) == 0);
-        sodium_free(out);
+        free(out);
 
-        out = (unsigned char *) sodium_malloc(m_len);
+        out = (unsigned char *) malloc(m_len);
         assert(crypto_box_curve25519xchacha20poly1305_detached_afternm
                (out, mac, m, m_len, nonce, pc) == 0);
         assert(crypto_box_curve25519xchacha20poly1305_open_detached_afternm
                (m2, out, mac, m_len, nonce, pc) == 0);
-        sodium_free(out);
+        free(out);
 
-        sodium_free(m2);
-        sodium_free(m);
+        free(m2);
+        free(m);
     }
-    sodium_free(pc);
-    sodium_free(mac);
-    sodium_free(nonce);
+    free(pc);
+    free(mac);
+    free(nonce);
 
-    seed = (unsigned char *) sodium_malloc
+    seed = (unsigned char *) malloc
         (crypto_box_curve25519xchacha20poly1305_SEEDBYTES);
     for (i = 0; i <(int)  crypto_box_curve25519xchacha20poly1305_SEEDBYTES; i++) {
         seed[i] = (unsigned char) i;
@@ -406,10 +406,10 @@ tv_box_xchacha20poly1305(void)
     assert(strcmp(hex, "4701d08488451f545a409fb58ae3e58581ca40ac3f7f114698cd71deac73ca01") == 0);
     sodium_bin2hex(hex, sizeof hex, sk, crypto_box_curve25519xchacha20poly1305_SECRETKEYBYTES);
     assert(strcmp(hex, "3d94eea49c580aef816935762be049559d6d1440dede12e6a125f1841fff8e6f") == 0);
-    sodium_free(seed);
+    free(seed);
 
-    sodium_free(sk);
-    sodium_free(pk);
+    free(sk);
+    free(pk);
 
     assert(crypto_box_curve25519xchacha20poly1305_seedbytes() == crypto_box_curve25519xchacha20poly1305_SEEDBYTES);
     assert(crypto_box_curve25519xchacha20poly1305_publickeybytes() == crypto_box_curve25519xchacha20poly1305_PUBLICKEYBYTES);
