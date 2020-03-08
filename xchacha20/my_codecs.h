@@ -1,3 +1,6 @@
+#include <stdint.h>
+#include <stddef.h>
+
 #define LOAD32_LE(SRC) load32_le(SRC)
 static inline uint32_t
 load32_le(const uint8_t src[4])
