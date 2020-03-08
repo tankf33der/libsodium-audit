@@ -1,4 +1,4 @@
-all: address memory undefined
+all: clean address memory undefined
 address:
 	clang -Wall -Wextra -fsanitize=address *.c && ./a.out
 memory:

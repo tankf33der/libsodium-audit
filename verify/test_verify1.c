@@ -23,7 +23,7 @@ main(void)
     v32x = (unsigned char *) malloc(32);
     v64  = (unsigned char *) malloc(64);
     v64x = (unsigned char *) malloc(64);
-    for (i = 0; i < 10000; i++) {
+    for (i = 0; i < 1000; i++) {
         randombytes_buf(v16, 16);
         randombytes_buf(v32, 32);
         randombytes_buf(v64, 64);
@@ -41,9 +41,8 @@ main(void)
             printf("Failed\n");
         }
     }
-    printf("OK\n");
 
-    for (i = 0; i < 100000; i++) {
+    for (i = 0; i < 1000; i++) {
         r = randombytes_random();
         o = (uint8_t) randombytes_random();
         if (o == 0) {
