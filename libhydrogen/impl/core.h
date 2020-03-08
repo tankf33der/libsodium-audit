@@ -1,9 +1,11 @@
 int
 hydro_init(void)
 {
+	/*
     if (hydro_random_init() != 0) {
         abort();
     }
+    */
     return 0;
 }
 

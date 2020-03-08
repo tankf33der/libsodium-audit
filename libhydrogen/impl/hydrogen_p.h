@@ -1,4 +1,4 @@
-static int hydro_random_init(void);
+//static int hydro_random_init(void);
 
 /* ---------------- */
 
