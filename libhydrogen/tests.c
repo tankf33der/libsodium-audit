@@ -130,11 +130,11 @@ static void
 test_core(void)
 {
     uint8_t     x[100];
-    uint8_t     y[100];
+    //uint8_t     y[100];
     uint8_t     a[5] = { 1, 2, 3, 4, 5 };
-    uint8_t     b[5] = { 1, 2, 3, 4, 5 };
+    //uint8_t     b[5] = { 1, 2, 3, 4, 5 };
     char        hex[201];
-    const char *hexf;
+    //const char *hexf;
 
     memset(x, 0xd0, sizeof x);
     hydro_memzero(x, sizeof x);
@@ -182,7 +182,7 @@ test_secretbox(void)
 {
     uint8_t key[hydro_secretbox_KEYBYTES];
     uint8_t m[25];
-    uint8_t m2[25];
+    //uint8_t m2[25];
     uint8_t c[hydro_secretbox_HEADERBYTES + 25];
     uint8_t dk[hydro_random_SEEDBYTES];
     uint8_t probe[hydro_secretbox_PROBEBYTES];
@@ -416,9 +416,9 @@ test_pwhash(void)
 {
     uint8_t            master_key[hydro_pwhash_MASTERKEYBYTES];
     uint8_t            new_master_key[hydro_pwhash_MASTERKEYBYTES];
-    uint8_t            stored[hydro_pwhash_STOREDBYTES];
+    //uint8_t            stored[hydro_pwhash_STOREDBYTES];
     uint8_t            h[64];
-    uint8_t            static_key[64];
+    //uint8_t            static_key[64];
     char               h_hex[2 * 64 + 1];
     unsigned long long ops = 1000;
 
@@ -490,10 +490,10 @@ main(void)
     //test_kx_kk();
     //test_kx_xx();
     //test_kx_nk();
-    //test_pwhash();
+    test_pwhash();
     //////test_randombytes();
-    //test_secretbox();
-    //test_sign();
+    test_secretbox();
+    test_sign();
 
 	printf("libhydrogen\n");
     return 0;
