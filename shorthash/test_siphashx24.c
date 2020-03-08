@@ -4,7 +4,6 @@
 #include <assert.h>
 
 #include "sodium.h"
-#include "sodium/crypto_shorthash_siphash24.h"
 
 #define MAXLEN 64
 
