@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int
 hydro_init(void)
 {
@@ -15,12 +17,17 @@ hydro_memzero(void *pnt, size_t len)
 #ifdef HAVE_EXPLICIT_BZERO
     explicit_bzero(pnt, len);
 #else
+
+	memset(pnt, 0, len);
+/*
     volatile unsigned char *volatile pnt_ = (volatile unsigned char *volatile) pnt;
     size_t i                              = (size_t) 0U;
 
     while (i < len) {
         pnt_[i++] = 0U;
     }
+	printf("memzero fin: len: %zu, i: %zu\n", len, i);
+*/
 #endif
 }
 
