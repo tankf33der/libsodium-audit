@@ -208,3 +208,11 @@ sodium_memzero(void * const pnt, const size_t len)
 {
 	memset(pnt, 0, len);
 }
+
+void *memcpy(void *__restrict __dest, const void *__restrict __src, size_t __n)
+{
+   char *csrc = (char *)__src;
+   char *cdest = (char *)__dest;
+   for (int i=0; i<__n; i++)
+       cdest[i] = csrc[i];
+}
