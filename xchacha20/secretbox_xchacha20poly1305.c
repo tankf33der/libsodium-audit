@@ -5,13 +5,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "core.h"
-#include "crypto_core_hchacha20.h"
-#include "crypto_onetimeauth_poly1305.h"
-#include "crypto_secretbox_xchacha20poly1305.h"
-#include "crypto_stream_chacha20.h"
-#include "private/common.h"
-#include "utils.h"
+#include "sodium/core.h"
+#include "sodium/crypto_core_hchacha20.h"
+#include "sodium/crypto_onetimeauth_poly1305.h"
+#include "sodium/crypto_secretbox_xchacha20poly1305.h"
+#include "sodium/crypto_stream_chacha20.h"
+//#include "private/common.h"
+#include "sodium/utils.h"
 
 #define crypto_secretbox_xchacha20poly1305_ZEROBYTES 32U
 
@@ -39,7 +39,7 @@ crypto_secretbox_xchacha20poly1305_detached(unsigned char *c,
         m = c;
     }
     memset(block0, 0U, crypto_secretbox_xchacha20poly1305_ZEROBYTES);
-    COMPILER_ASSERT(64U >= crypto_secretbox_xchacha20poly1305_ZEROBYTES);
+    //COMPILER_ASSERT(64U >= crypto_secretbox_xchacha20poly1305_ZEROBYTES);
     mlen0 = mlen;
     if (mlen0 > 64U - crypto_secretbox_xchacha20poly1305_ZEROBYTES) {
         mlen0 = 64U - crypto_secretbox_xchacha20poly1305_ZEROBYTES;
@@ -50,8 +50,8 @@ crypto_secretbox_xchacha20poly1305_detached(unsigned char *c,
     crypto_stream_chacha20_xor(block0, block0,
                                mlen0 + crypto_secretbox_xchacha20poly1305_ZEROBYTES,
                                n + 16, subkey);
-    COMPILER_ASSERT(crypto_secretbox_xchacha20poly1305_ZEROBYTES >=
-                    crypto_onetimeauth_poly1305_KEYBYTES);
+    //COMPILER_ASSERT(crypto_secretbox_xchacha20poly1305_ZEROBYTES >=
+    //                crypto_onetimeauth_poly1305_KEYBYTES);
     crypto_onetimeauth_poly1305_init(&state, block0);
 
     for (i = 0U; i < mlen0; i++) {
