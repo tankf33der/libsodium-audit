@@ -18,13 +18,15 @@ hydro_memzero(void *pnt, size_t len)
     explicit_bzero(pnt, len);
 #else
 
-	//memset(pnt, 0, len);
+	memset(pnt, 0, len);
+/*
     volatile unsigned char *volatile pnt_ = (volatile unsigned char *volatile) pnt;
     size_t i                              = (size_t) 0U;
 
     while (i < len) {
         pnt_[i++] = 0U;
     }
+*/
 #endif
 }
 
