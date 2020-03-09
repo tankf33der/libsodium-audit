@@ -144,3 +144,14 @@ secretbox8/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_obje
                          crypto_secretbox_open :: secretbox8/test_secretbox8.c:32 <-
                          main
 ```
+
+```
+secretbox7/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_object(x+i);
+                  stack: crypto_verify_n :: secretbox7/verify.c:85 <-
+                         crypto_verify_16 :: secretbox7/poly1305_donna.c:112 <-
+                         crypto_onetimeauth_poly1305_donna_verify :: secretbox7/onetimeauth_poly1305.c:63 <-
+                         crypto_onetimeauth_poly1305_verify :: secretbox7/secretbox_xsalsa20poly1305.c:38 <-
+                         crypto_secretbox_xsalsa20poly1305_open :: secretbox7/crypto_secretbox.c:60 <-
+                         crypto_secretbox_open :: secretbox7/test_secretbox7.c:29 <-
+                         main
+```
