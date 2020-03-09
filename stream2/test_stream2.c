@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -8,7 +9,20 @@ int crypto_stream(unsigned char *c, unsigned long long clen,
                   const unsigned char *n, const unsigned char *k)
             __attribute__ ((nonnull));
 */
-#include "sodium.h"
+//#include "sodium.h"
+
+int crypto_stream_salsa20(unsigned char *c, unsigned long long clen,
+                          const unsigned char *n, const unsigned char *k)
+            __attribute__ ((nonnull));
+int crypto_hash_sha256(unsigned char *out, const unsigned char *in,
+                       unsigned long long inlen) __attribute__ ((nonnull(1)));
+int crypto_stream_salsa20_xor_ic(unsigned char *c, const unsigned char *m,
+                                 unsigned long long mlen,
+                                 const unsigned char *n, uint64_t ic,
+                                 const unsigned char *k);
+size_t crypto_stream_salsa20_keybytes(void);
+size_t crypto_stream_salsa20_noncebytes(void);
+size_t crypto_stream_salsa20_messagebytes_max(void);
 
 static const unsigned char secondkey[32] = {
     0xdc, 0x90, 0x8d, 0xda, 0x0b, 0x93, 0x44,
@@ -31,7 +45,7 @@ main(void)
     char          *hex;
     unsigned char  h[32];
     size_t         sizeof_hex = 32 * 2 + 1;
-    size_t         sizeof_output = 4194304;
+    size_t         sizeof_output = 8192;
     int            i;
 
     output = (unsigned char *) malloc(sizeof_output);
