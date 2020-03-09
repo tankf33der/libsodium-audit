@@ -482,8 +482,8 @@ main(void)
     //ret = hydro_init();
     //assert(ret == 0);
 
-    test_core();
-    //test_hash();
+    //test_core();
+    test_hash();
 
     //test_kdf();
     //test_kx_n();

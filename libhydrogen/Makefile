@@ -8,9 +8,9 @@ undefined:
 mike:
 	rm -rf mike.c
 	cat *.c >> mike.c
-ccomp: mike
+ccomp: clean mike
 	ccomp mike.c && ./a.out
-interp: mike
+interp: clean mike
 	ccomp -interp mike.c
 clean:
 	rm -rf *.o *.out mike.c
