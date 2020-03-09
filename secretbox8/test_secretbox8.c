@@ -28,7 +28,7 @@ main(void)
         crypto_secretbox(c, m, mlen + crypto_secretbox_ZEROBYTES, n, k);
         caught = 0;
         while (caught < 10) {
-            c[rand() % (mlen + crypto_secretbox_ZEROBYTES)] = rand();
+            c[((uint8_t)randombytes_uniform(2048)) % (mlen + crypto_secretbox_ZEROBYTES)] = (uint8_t)randombytes_uniform(255);
             if (crypto_secretbox_open(m2, c, mlen + crypto_secretbox_ZEROBYTES,
                                       n, k) == 0) {
                 for (i = 0; i < mlen + crypto_secretbox_ZEROBYTES; ++i) {
