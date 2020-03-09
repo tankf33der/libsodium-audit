@@ -10,6 +10,8 @@ Items below passed SANs, TIS, compcert-interp:
 
 [verify](https://github.com/jedisct1/libsodium/blob/master/test/default/verify1.c)
 
+[xchacha](https://github.com/jedisct1/libsodium/blob/master/test/default/xchacha20.c)
+
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
