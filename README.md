@@ -12,6 +12,8 @@ Items below passed SANs, TIS, compcert-interp:
 
 [xchacha](https://github.com/jedisct1/libsodium/blob/master/test/default/xchacha20.c)
 
+[stream4](https://github.com/jedisct1/libsodium/blob/master/test/default/stream4.c)
+
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
