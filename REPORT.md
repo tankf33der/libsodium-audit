@@ -1,5 +1,11 @@
 ### Raw list of uniq issues without any sorting:
 ```
+verify/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_object(x+i);
+                  stack: crypto_verify_n :: verify/verify.c:85 <-
+                         crypto_verify_16 :: verify/test_verify1.c:35 <-
+                         main
+```
+```
 libhydrogen/impl/hydrogen_p.h:50:[kernel] warning: pointer arithmetic: assert \inside_object(b1+i);
                   stack: hydro_mem_ct_cmp_u32 :: libhydrogen/impl/kx.h:121 <-
                          hydro_kx_aead_decrypt :: libhydrogen/impl/kx.h:293 <-
