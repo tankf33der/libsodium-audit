@@ -91,3 +91,25 @@ xchacha20/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_objec
                          tv_secretbox_xchacha20poly1305 :: xchacha20/test_xchacha20.c:441 <-
                          main
 ```
+
+```
+xchacha20/scalarmult_curve25519.c:25:[value] warning: The following sub-expression cannot be evaluated:
+                 (int)d_0 | (int)*(q + i)
+
+                 All sub-expressions with their values:
+                 int  (int)*(q + i) ∈ {213}
+                 int  (int)d_0 ∈ [0..255]
+                 unsigned char *  q + i ∈ {{ &s[0] }}
+                 unsigned char  *(q + i) ∈ {213}
+                 unsigned char *  q ∈ {{ &s[0] }}
+                 size_t  i ∈ {0}
+                 unsigned char  d_0 ∈ [0..255]
+
+                 Stopping
+                 stack: crypto_scalarmult_curve25519 :: xchacha20/box_curve25519xchacha20poly1305.c:48 <-
+                        crypto_box_curve25519xchacha20poly1305_beforenm :: xchacha20/box_curve25519xchacha20poly1305.c:73 <-
+                        crypto_box_curve25519xchacha20poly1305_detached :: xchacha20/box_curve25519xchacha20poly1305.c:107 <-
+                        crypto_box_curve25519xchacha20poly1305_easy :: xchacha20/test_xchacha20.c:343 <-
+                        tv_box_xchacha20poly1305 :: xchacha20/test_xchacha20.c:439 <-
+                        main
+```
