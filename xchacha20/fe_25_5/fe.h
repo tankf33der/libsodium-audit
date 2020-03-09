@@ -1,4 +1,4 @@
-#include "../sodium/private/quirks.h"
+//#include "../sodium/private/quirks.h"
 
 /*
  Ignores top bit of h.

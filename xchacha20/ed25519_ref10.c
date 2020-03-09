@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "sodium/crypto_verify_32.h"
-//#include "private/common.h"
+#include "sodium/private/common.h"
 #include "sodium/private/ed25519_ref10.h"
 #include "sodium/utils.h"
 
