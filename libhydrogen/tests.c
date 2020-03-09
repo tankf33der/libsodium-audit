@@ -1,9 +1,10 @@
 #ifdef NDEBUG
 #undef NDEBUG
 #endif
-//f#include <assert.h>
+#include <assert.h>
 #include <stdio.h>
 #include <string.h>
+
 
 #include "hydrogen.h"
 
@@ -316,8 +317,8 @@ test_kx_n(void)
     hydro_kx_n_1(&kp_client, packet1, psk, server_static_kp.pk);
     hydro_kx_n_2(&kp_server, packet1, psk, &server_static_kp);
 
-    //assert(hydro_equal(kp_client.tx, kp_server.rx, hydro_kx_SESSIONKEYBYTES));
-    //assert(hydro_equal(kp_client.rx, kp_server.tx, hydro_kx_SESSIONKEYBYTES));
+    assert(hydro_equal(kp_client.tx, kp_server.rx, hydro_kx_SESSIONKEYBYTES));
+    assert(hydro_equal(kp_client.rx, kp_server.tx, hydro_kx_SESSIONKEYBYTES));
 }
 
 static void
@@ -483,9 +484,10 @@ main(void)
     //assert(ret == 0);
 
     //test_core();
-    test_hash();
+    //test_hash();
 
     //test_kdf();
+    // ^^^ ok
     //test_kx_n();
     //test_kx_kk();
     //test_kx_xx();
@@ -493,7 +495,7 @@ main(void)
     //test_pwhash();
     //XXX////test_randombytes();
     //test_secretbox();
-    //test_sign();
+    test_sign();
 
 	printf("libhydrogen\n");
     return 0;
