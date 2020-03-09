@@ -23,6 +23,11 @@ int crypto_stream_salsa20_xor_ic(unsigned char *c, const unsigned char *m,
 size_t crypto_stream_salsa20_keybytes(void);
 size_t crypto_stream_salsa20_noncebytes(void);
 size_t crypto_stream_salsa20_messagebytes_max(void);
+char *sodium_bin2hex(char * const hex, const size_t hex_maxlen,
+                     const unsigned char * const bin, const size_t bin_len);
+
+
+
 
 static const unsigned char secondkey[32] = {
     0xdc, 0x90, 0x8d, 0xda, 0x0b, 0x93, 0x44,
