@@ -1,4 +1,4 @@
-### Raw list of all issues without any sorting:
+### Raw list of uniq issues without any sorting:
 ```
 libhydrogen/impl/hydrogen_p.h:50:[kernel] warning: pointer arithmetic: assert \inside_object(b1+i);
                   stack: hydro_mem_ct_cmp_u32 :: libhydrogen/impl/kx.h:121 <-
