@@ -309,8 +309,6 @@ tv_secretbox_xchacha20poly1305(void)
     printf("tv_secretbox_xchacha20: ok\n");
 }
 
-/*
-
 static void
 tv_box_xchacha20poly1305(void)
 {
@@ -431,15 +429,14 @@ tv_box_xchacha20poly1305(void)
     printf("tv_box_xchacha20poly1305: ok\n");
 }
 
-*/
 
 int
 main(void)
 {
     //tv_hchacha20();
     //tv_stream_xchacha20();
-    tv_secretbox_xchacha20poly1305();
-    //tv_box_xchacha20poly1305();
+    //tv_secretbox_xchacha20poly1305();
+    tv_box_xchacha20poly1305();
 
     return 0;
 }
