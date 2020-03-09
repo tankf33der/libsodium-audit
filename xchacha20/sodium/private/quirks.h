@@ -47,9 +47,9 @@
 #define escrypt_kdf_sse _sodium_escrypt_kdf_sse
 #define escrypt_parse_setting _sodium_escrypt_parse_setting
 #define escrypt_r _sodium_escrypt_r
-#define fe25519_frombytes _sodium_fe25519_frombytes
-#define fe25519_invert _sodium_fe25519_invert
-#define fe25519_tobytes _sodium_fe25519_tobytes
+//#define fe25519_frombytes _sodium_fe25519_frombytes
+//#define fe25519_invert _sodium_fe25519_invert
+//#define fe25519_tobytes _sodium_fe25519_tobytes
 #define ge25519_add _sodium_ge25519_add
 #define ge25519_double_scalarmult_vartime _sodium_ge25519_double_scalarmult_vartime
 #define ge25519_from_hash _sodium_ge25519_from_hash
@@ -65,7 +65,7 @@
 #define ge25519_p3_to_cached _sodium_ge25519_p3_to_cached
 #define ge25519_p3_tobytes _sodium_ge25519_p3_tobytes
 #define ge25519_scalarmult _sodium_ge25519_scalarmult
-#define ge25519_scalarmult_base _sodium_ge25519_scalarmult_base
+//#define ge25519_scalarmult_base _sodium_ge25519_scalarmult_base
 #define ge25519_sub _sodium_ge25519_sub
 #define ge25519_tobytes _sodium_ge25519_tobytes
 #define ristretto255_from_hash _sodium_ristretto255_from_hash
