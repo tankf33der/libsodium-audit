@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <assert.h>
+
+//#include "sodium.h"
+
+int crypto_stream_xor(unsigned char *c, const unsigned char *m,
+                      unsigned long long mlen, const unsigned char *n,
+                      const unsigned char *k)
+            __attribute__ ((nonnull));
+
+
 
 static unsigned char firstkey[32] = { 0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
                                       0xd4, 0x62, 0xcd, 0x51, 0x19, 0x7a, 0x9a,
@@ -35,16 +45,11 @@ static unsigned char c[163];
 int
 main(void)
 {
-    int i;
-
     crypto_stream_xor(c, m, 163, nonce, firstkey);
-
-    for (i = 32; i < 163; ++i) {
-        printf(",0x%02x", (unsigned int) c[i]);
-        if (i % 8 == 7)
-            printf("\n");
-    }
-    printf("\n");
+    // XXX
+	assert(c[32] == 0x8e);
+	assert(c[162] == 0xa5);
+    printf("stream4: ok\n");
 
     return 0;
 }
