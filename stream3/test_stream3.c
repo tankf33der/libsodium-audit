@@ -1,3 +1,11 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <assert.h>
+
+int crypto_stream(unsigned char *c, unsigned long long clen,
+                  const unsigned char *n, const unsigned char *k)
+            __attribute__ ((nonnull));
 
 
 static unsigned char firstkey[32] = { 0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
@@ -19,11 +27,16 @@ main(void)
     int i;
 
     crypto_stream(rs, 32, nonce, firstkey);
+	assert(rs[0] == 0xee);
+	assert(rs[31] == 0x80);
 
+/*
     for (i = 0; i < 32; ++i) {
         printf(",0x%02x", (unsigned int) rs[i]);
         if (i % 8 == 7)
             printf("\n");
     }
+*/
+	printf("stream3: ok\n");
     return 0;
 }
