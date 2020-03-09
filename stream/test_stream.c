@@ -61,7 +61,7 @@ main(void)
     char          *hex;
     unsigned char *output;
     size_t         sizeof_hex = 17 * 64 * 2 + 1;
-    size_t         sizeof_output = 4194304;
+    size_t         sizeof_output = 8192;
     int            i;
 
     output = (unsigned char *) malloc(sizeof_output);
