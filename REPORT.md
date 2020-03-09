@@ -113,3 +113,17 @@ xchacha20/scalarmult_curve25519.c:25:[value] warning: The following sub-expressi
                         tv_box_xchacha20poly1305 :: xchacha20/test_xchacha20.c:439 <-
                         main
 ```
+
+```
+xchacha20/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_object(x+i);
+                  stack: crypto_verify_n :: xchacha20/verify.c:85 <-
+                         crypto_verify_16 :: xchacha20/poly1305_donna.c:112 <-
+                         crypto_onetimeauth_poly1305_donna_verify :: xchacha20/onetimeauth_poly1305.c:63 <-
+                         crypto_onetimeauth_poly1305_verify :: xchacha20/secretbox_xchacha20poly1305.c:108 <-
+                         crypto_secretbox_xchacha20poly1305_open_detached :: xchacha20/box_curve25519xchacha20poly1305.c:117 <-
+                         crypto_box_curve25519xchacha20poly1305_open_detached_afternm :: xchacha20/box_curve25519xchacha20poly1305.c:133 <-
+                         crypto_box_curve25519xchacha20poly1305_open_detached :: xchacha20/box_curve25519xchacha20poly1305.c:161 <-
+                         crypto_box_curve25519xchacha20poly1305_open_easy :: xchacha20/test_xchacha20.c:355 <-
+                         tv_box_xchacha20poly1305 :: xchacha20/test_xchacha20.c:439 <-
+                         main
+```
