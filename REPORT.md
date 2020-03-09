@@ -75,3 +75,19 @@ Stuck subexpression:
          && (unsigned long long) m - (unsigned long long) c < mlen
 ERROR: Undefined behavior
 ```
+
+```
+code:
+https://git.envs.net/mpech/libsodium-audit/src/branch/master/xchacha20/verify.c#L75
+
+
+xchacha20/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_object(x+i);
+                  stack: crypto_verify_n :: xchacha20/verify.c:85 <-
+                         crypto_verify_16 :: xchacha20/poly1305_donna.c:112 <-
+                         crypto_onetimeauth_poly1305_donna_verify :: xchacha20/onetimeauth_poly1305.c:63 <-
+                         crypto_onetimeauth_poly1305_verify :: xchacha20/secretbox_xchacha20poly1305.c:108 <-
+                         crypto_secretbox_xchacha20poly1305_open_detached :: xchacha20/secretbox_xchacha20poly1305.c:154 <-
+                         crypto_secretbox_xchacha20poly1305_open_easy :: xchacha20/test_xchacha20.c:268 <-
+                         tv_secretbox_xchacha20poly1305 :: xchacha20/test_xchacha20.c:441 <-
+                         main
+```

@@ -436,8 +436,8 @@ tv_box_xchacha20poly1305(void)
 int
 main(void)
 {
-    tv_hchacha20();
-    tv_stream_xchacha20();
+    //tv_hchacha20();
+    //tv_stream_xchacha20();
     tv_secretbox_xchacha20poly1305();
     //tv_box_xchacha20poly1305();
 
