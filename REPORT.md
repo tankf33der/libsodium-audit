@@ -48,3 +48,30 @@ xchacha20/my_utils.c:167:[value] warning: The following sub-expression cannot be
                         main
 
 ```
+
+```
+code:
+https://github.com/jedisct1/libsodium/blob/master/src/libsodium/crypto_secretbox/xchacha20poly1305/secretbox_xchacha20poly1305.c#L34
+
+TIS:
+xchacha20/secretbox_xchacha20poly1305.c:34:[kernel] warning: pointer comparison: assert \pointer_comparable((void *)c, (void *)m);
+                  stack: crypto_secretbox_xchacha20poly1305_detached :: xchacha20/secretbox_xchacha20poly1305.c:85 <-
+                         crypto_secretbox_xchacha20poly1305_easy :: xchacha20/test_xchacha20.c:256 <-
+                         tv_secretbox_xchacha20poly1305 :: xchacha20/test_xchacha20.c:441 <-
+                         main
+[value] Stopping at nth alarm
+[value] user error: Degeneration occurred:
+                    results are not correct for lines of code that can be reached from the degeneration point.
+
+
+compcert-interp:
+Stuck state: in function crypto_secretbox_xchacha20poly1305_detached, expression
+  <ptr> > <ptr> && (unsigned long long) c - (unsigned long long) m < mlen
+    || (unsigned long long) m > (unsigned long long) c
+         && (unsigned long long) m - (unsigned long long) c < mlen
+Stuck subexpression:
+  <ptr> > <ptr> && (unsigned long long) c - (unsigned long long) m < mlen
+    || (unsigned long long) m > (unsigned long long) c
+         && (unsigned long long) m - (unsigned long long) c < mlen
+ERROR: Undefined behavior
+```
