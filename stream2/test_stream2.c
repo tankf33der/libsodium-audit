@@ -40,7 +40,7 @@ main(void)
     crypto_stream_salsa20(output, sizeof_output, noncesuffix, secondkey);
     crypto_hash_sha256(h, output, sizeof_output);
     sodium_bin2hex(hex, sizeof_hex, h, sizeof h);
-    printf("%s\n", hex);
+    //printf("%s\n", hex);
 
     assert(sizeof_output > 4000);
 
@@ -54,7 +54,7 @@ main(void)
                                  secondkey);
     crypto_hash_sha256(h, output, sizeof_output);
     sodium_bin2hex(hex, sizeof_hex, h, sizeof h);
-    printf("%s\n", hex);
+    //printf("%s\n", hex);
 
     free(hex);
     free(output);
@@ -63,5 +63,6 @@ main(void)
     assert(crypto_stream_salsa20_noncebytes() > 0U);
     assert(crypto_stream_salsa20_messagebytes_max() > 0U);
 
+	printf("stream2: ok\n");
     return 0;
 }
