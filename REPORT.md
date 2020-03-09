@@ -6,7 +6,14 @@ libhydrogen/impl/hydrogen_p.h:50:[kernel] warning: pointer arithmetic: assert \i
                          hydro_kx_kk_2 :: libhydrogen/tests.c:339 <-
                          test_kx_kk :: libhydrogen/tests.c:492 <-
                          main
-[value] Stopping at nth alarm
-[value] user error: Degeneration occurred:
-                    results are not correct for lines of code that can be reached from the degeneration point.
 ```
+
+```
+libhydrogen/impl/core.h:26:[kernel] warning: pointer arithmetic: assert \inside_object(pnt_+tmp);
+                                      (tmp from i++)
+                  stack: hydro_memzero :: libhydrogen/tests.c:141 <-
+                         test_core :: libhydrogen/tests.c:486 <-
+                         main
+```
+
+
