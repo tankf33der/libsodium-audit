@@ -27,8 +27,17 @@ size_t crypto_stream_salsa20_noncebytes(void);
 size_t crypto_stream_salsa20_messagebytes_max(void);
 char *sodium_bin2hex(char * const hex, const size_t hex_maxlen,
                      const unsigned char * const bin, const size_t bin_len);
+int crypto_stream(unsigned char *c, unsigned long long clen,
+                  const unsigned char *n, const unsigned char *k)
+            __attribute__ ((nonnull));
+int crypto_stream_xsalsa20_xor_ic(unsigned char *c, const unsigned char *m,
+                                  unsigned long long mlen,
+                                  const unsigned char *n, uint64_t ic,
+                                  const unsigned char *k)
+            __attribute__ ((nonnull));
 
 
+#include "sodium/randombytes.h"
 
 static const unsigned char firstkey[32] = {
     0x1b, 0x27, 0x55, 0x64, 0x73, 0xe9, 0x85,
