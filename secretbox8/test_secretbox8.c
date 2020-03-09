@@ -9,9 +9,9 @@
 
 static unsigned char k[crypto_secretbox_KEYBYTES];
 static unsigned char n[crypto_secretbox_NONCEBYTES];
-static unsigned char m[10000];
-static unsigned char c[10000];
-static unsigned char m2[10000];
+static unsigned char m[2048];
+static unsigned char c[2048];
+static unsigned char m2[2048];
 
 int
 main(void)
@@ -20,7 +20,7 @@ main(void)
     size_t i;
     int    caught;
 
-    for (mlen = 0; mlen < 1000 && mlen + crypto_secretbox_ZEROBYTES < sizeof m;
+    for (mlen = 0; mlen < 128 && mlen + crypto_secretbox_ZEROBYTES < sizeof m;
          ++mlen) {
         crypto_secretbox_keygen(k);
         randombytes_buf(n, crypto_secretbox_NONCEBYTES);
@@ -42,5 +42,6 @@ main(void)
             }
         }
     }
+    printf("secretbox8: ok\n");
     return 0;
 }
