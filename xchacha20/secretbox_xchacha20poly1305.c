@@ -31,7 +31,6 @@ crypto_secretbox_xchacha20poly1305_detached(unsigned char *c,
 
     crypto_core_hchacha20(subkey, n, k, NULL);
 
-/*
     if (((uintptr_t) c > (uintptr_t) m &&
          (uintptr_t) c - (uintptr_t) m < mlen) ||
         ((uintptr_t) m > (uintptr_t) c &&
@@ -40,7 +39,6 @@ crypto_secretbox_xchacha20poly1305_detached(unsigned char *c,
         memmove(c, m, mlen);
         m = c;
     }
-*/
     memset(block0, 0U, crypto_secretbox_xchacha20poly1305_ZEROBYTES);
     //COMPILER_ASSERT(64U >= crypto_secretbox_xchacha20poly1305_ZEROBYTES);
     mlen0 = mlen;

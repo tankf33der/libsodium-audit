@@ -1,10 +1,10 @@
 all: clean address memory undefined
 address: clean
-	clang -Wall -Wextra -fsanitize=address *.c && ./a.out
+	clang -fsanitize=address *.c && ./a.out
 memory: clean
-	clang -Wall -Wextra -fsanitize=memory *.c && ./a.out
+	clang -fsanitize=memory *.c && ./a.out
 undefined: clean
-	clang -Wall -Wextra -fsanitize=undefined *.c && ./a.out
+	clang -fsanitize=undefined *.c && ./a.out
 mike:
 	cat *.c >> mike.c
 ccomp: clean mike
