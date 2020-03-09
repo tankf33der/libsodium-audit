@@ -8,7 +8,7 @@
 # include "sandy2x/curve25519_sandy2x.h"
 #endif
 #include "x25519_ref10.h"
-static const crypto_scalarmult_curve25519_implementation *implementation =
+static const crypto_scalarmult_curve25519_implementation *implementation_x =
     &crypto_scalarmult_curve25519_ref10_implementation;
 
 int
@@ -18,7 +18,7 @@ crypto_scalarmult_curve25519(unsigned char *q, const unsigned char *n,
     size_t                 i;
     volatile unsigned char d = 0;
 
-    if (implementation->mult(q, n, p) != 0) {
+    if (implementation_x->mult(q, n, p) != 0) {
         return -1; /* LCOV_EXCL_LINE */
     }
     for (i = 0; i < crypto_scalarmult_curve25519_BYTES; i++) {
@@ -49,7 +49,7 @@ crypto_scalarmult_curve25519_scalarbytes(void)
 int
 _crypto_scalarmult_curve25519_pick_best_implementation(void)
 {
-    implementation = &crypto_scalarmult_curve25519_ref10_implementation;
+    implementation_x = &crypto_scalarmult_curve25519_ref10_implementation;
 
 #ifdef HAVE_AVX_ASM
     if (sodium_runtime_has_avx()) {

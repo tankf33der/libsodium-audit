@@ -12,7 +12,7 @@
 #include "sodium/crypto_secretbox_xchacha20poly1305.h"
 //#include "private/common.h"
 #include "sodium/randombytes.h"
-//#include "utils.h"
+#include "sodium/utils.h"
 
 int
 crypto_box_curve25519xchacha20poly1305_seed_keypair(unsigned char *pk,
