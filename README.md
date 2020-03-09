@@ -16,6 +16,12 @@ Items below passed SANs, TIS, compcert-interp:
 
 [stream3](https://github.com/jedisct1/libsodium/blob/master/test/default/stream3.c)
 
+[stream2](https://github.com/jedisct1/libsodium/blob/master/test/default/stream2.c)
+
+[stream](https://github.com/jedisct1/libsodium/blob/master/test/default/stream.c)
+
+
+
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
