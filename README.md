@@ -20,6 +20,12 @@ Items below passed SANs, TIS, compcert-interp:
 
 [stream](https://github.com/jedisct1/libsodium/blob/master/test/default/stream.c)
 
+[secretbox8](https://github.com/jedisct1/libsodium/blob/master/test/default/secretbox8.c)
+
+[secretbox7](https://github.com/jedisct1/libsodium/blob/master/test/default/secretbox7.c)
+
+[scalarmult7](https://github.com/jedisct1/libsodium/blob/master/test/default/scalarmult7.c)
+
 
 
 ====
