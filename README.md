@@ -4,7 +4,7 @@ Lets check libsodium library for fun and profit.
 
 Take tests from 'test/default/' and modify to be able run under control.
 
-Items below passed SANs, TIS, compcert-interp:
+Items below passed SANs, TIS, compcert-interp somehow:
 
 [shorthash](https://github.com/jedisct1/libsodium/blob/master/test/default/shorthash.c)
 
@@ -26,10 +26,10 @@ Items below passed SANs, TIS, compcert-interp:
 
 [scalarmult7](https://github.com/jedisct1/libsodium/blob/master/test/default/scalarmult7.c)
 
-
-
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
+
+====
 
 Nightmare mode, you need a lot of energy, dont try at home.
