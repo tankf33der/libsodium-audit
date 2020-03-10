@@ -36,7 +36,7 @@ void randombytes_buf(uint8_t *buf, const size_t size)
             __attribute__ ((nonnull));
 
 SODIUM_EXPORT
-void randombytes_buf_deterministic(void * const buf, const size_t size,
+void randombytes_buf_deterministic(uint8_t *buf, const size_t size,
                                    const unsigned char seed[randombytes_SEEDBYTES])
             __attribute__ ((nonnull));
 
