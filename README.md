@@ -28,6 +28,8 @@ Items below passed SANs, TIS, compcert-interp somehow:
 
 [pwhash_scrypt](https://github.com/jedisct1/libsodium/blob/master/test/default/pwhash_scrypt.c)
 
+[generichash](https://github.com/jedisct1/libsodium/blob/master/test/default/generichash.c)
+
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
