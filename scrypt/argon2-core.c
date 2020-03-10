@@ -45,9 +45,9 @@
 # define MAP_POPULATE 0
 #endif
 
-#define STORE32_LE(DST, W) store32_le((DST), (W))
+#define STORE32_LE(DST, W) store32_le3((DST), (W))
 static inline void
-store32_le(uint8_t dst[4], uint32_t w)
+store32_le3(uint8_t dst[4], uint32_t w)
 {
 #ifdef NATIVE_LITTLE_ENDIAN
     memcpy(dst, &w, sizeof w);

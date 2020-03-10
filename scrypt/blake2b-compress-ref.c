@@ -6,7 +6,7 @@
 #include "sodium/private/common.h"
 
 CRYPTO_ALIGN(64)
-static const uint64_t blake2b_IV[8] = {
+static const uint64_t blake2b_IV2[8] = {
     0x6a09e667f3bcc908ULL, 0xbb67ae8584caa73bULL, 0x3c6ef372fe94f82bULL,
     0xa54ff53a5f1d36f1ULL, 0x510e527fade682d1ULL, 0x9b05688c2b3e6c1fULL,
     0x1f83d9abfb41bd6bULL, 0x5be0cd19137e2179ULL
@@ -40,14 +40,14 @@ blake2b_compress_ref(blake2b_state *S, const uint8_t block[BLAKE2B_BLOCKBYTES])
     for (i = 0; i < 8; ++i) {
         v[i] = S->h[i];
     }
-    v[8]  = blake2b_IV[0];
-    v[9]  = blake2b_IV[1];
-    v[10] = blake2b_IV[2];
-    v[11] = blake2b_IV[3];
-    v[12] = S->t[0] ^ blake2b_IV[4];
-    v[13] = S->t[1] ^ blake2b_IV[5];
-    v[14] = S->f[0] ^ blake2b_IV[6];
-    v[15] = S->f[1] ^ blake2b_IV[7];
+    v[8]  = blake2b_IV2[0];
+    v[9]  = blake2b_IV2[1];
+    v[10] = blake2b_IV2[2];
+    v[11] = blake2b_IV2[3];
+    v[12] = S->t[0] ^ blake2b_IV2[4];
+    v[13] = S->t[1] ^ blake2b_IV2[5];
+    v[14] = S->f[0] ^ blake2b_IV2[6];
+    v[15] = S->f[1] ^ blake2b_IV2[7];
 #define G(r, i, a, b, c, d)                      \
     do {                                         \
         a += b + m[blake2b_sigma[r][2 * i + 0]]; \
