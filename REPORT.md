@@ -199,3 +199,14 @@ scrypt/scrypt_platform.c:66:[value] warning: The following sub-expression cannot
                         tv :: scrypt/test_pwhash_scrypt.c:134 <-
                         main
 ```
+```
+generichash/utils.c:147:[kernel] warning: pointer arithmetic: assert \inside_object(pnt_+tmp);
+                                      (tmp from i++)
+                  stack: sodium_memzero :: generichash/blake2b-ref.c:227 <-
+                         blake2b_init_key :: generichash/blake2b-ref.c:374 <-
+                         _sodium_blake2b :: generichash/generichash_blake2b.c:23 <-
+                         crypto_generichash_blake2b :: generichash/crypto_generichash.c:58 <-
+                         crypto_generichash :: generichash/test_generichash.c:54 <-
+                         tv :: generichash/test_generichash.c:72 <-
+                         main
+```
