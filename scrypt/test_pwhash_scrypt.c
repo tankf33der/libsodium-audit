@@ -52,7 +52,6 @@ tv(void)
     } while (++i < (sizeof tests) / (sizeof tests[0]));
 }
 
-/*
 static void
 str_tests(void)
 {
@@ -61,11 +60,11 @@ str_tests(void)
     char       *salt;
     const char *passwd = "Correct Horse Battery Staple";
 
-    salt = (char *) sodium_malloc(crypto_pwhash_scryptsalsa208sha256_SALTBYTES);
+    salt = (char *) malloc(crypto_pwhash_scryptsalsa208sha256_SALTBYTES);
     str_out =
-        (char *) sodium_malloc(crypto_pwhash_scryptsalsa208sha256_STRBYTES);
+        (char *) malloc(crypto_pwhash_scryptsalsa208sha256_STRBYTES);
     str_out2 =
-        (char *) sodium_malloc(crypto_pwhash_scryptsalsa208sha256_STRBYTES);
+        (char *) malloc(crypto_pwhash_scryptsalsa208sha256_STRBYTES);
     memcpy(salt, "[<~A 32-bytes salt for scrypt~>]",
            crypto_pwhash_scryptsalsa208sha256_SALTBYTES);
     if (crypto_pwhash_scryptsalsa208sha256_str(str_out, passwd, strlen(passwd),
@@ -121,18 +120,17 @@ str_tests(void)
     assert(crypto_pwhash_scryptsalsa208sha256_str_needs_rehash
            ("", OPSLIMIT, MEMLIMIT) == -1);
 
-    sodium_free(salt);
-    sodium_free(str_out);
-    sodium_free(str_out2);
+    free(salt);
+    free(str_out);
+    free(str_out2);
 }
-*/
 
 
 int
 main(void)
 {
     tv();
-    //str_tests();
+    str_tests();
 
 /*
     assert(crypto_pwhash_scryptsalsa208sha256_bytes_min() > 0U);
