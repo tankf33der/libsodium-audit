@@ -26,6 +26,8 @@ Items below passed SANs, TIS, compcert-interp somehow:
 
 [scalarmult7](https://github.com/jedisct1/libsodium/blob/master/test/default/scalarmult7.c)
 
+[scrypt](https://github.com/jedisct1/libsodium/blob/master/test/default/pwhash_scrypt.c)
+
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
