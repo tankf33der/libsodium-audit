@@ -35,7 +35,7 @@ void randombytes_buf(u8 *out, size_t size)
     }
 }
 
-void hydro_random_buf_deterministic(u8 *stream, size_t size)
+void randombytes_buf_deterministic(u8 *stream, size_t size)
 {
     FOR (i, 0, size) {
         stream[i] = (u8)rand64();
@@ -60,6 +60,8 @@ randombytes_uniform(const uint32_t upper_bound)
 
     return r % upper_bound;
 }
+
+
 
 /*
 
@@ -206,11 +208,13 @@ memset(void *__s, int __c, size_t __n)
 }
 
 
+/*
 void
 sodium_memzero(void * const pnt, const size_t len)
 {
 	memset(pnt, 0, len);
 }
+*/
 
 void *memcpy(void *__restrict __dest, const void *__restrict __src, size_t __n)
 {
