@@ -420,9 +420,9 @@ _sodium_alloc_init(void)
 #endif
     //COMPILER_ASSERT(sizeof shielding_prekey >= randombytes_SEEDBYTES);
     randombytes_buf(shielding_prekey, randombytes_SEEDBYTES);
-    randombytes_buf_deterministic(canary, sizeof canary, shielding_prekey);
+    randombytes_buf_deterministic(canary, sizeof canary);
     shielding_prekey[0] ^= 0x01;
-    randombytes_buf_deterministic(shielding_prekey, sizeof shielding_prekey, shielding_prekey);
+    randombytes_buf_deterministic(shielding_prekey, sizeof shielding_prekey);
 
     return 0;
 }

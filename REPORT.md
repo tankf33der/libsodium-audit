@@ -155,3 +155,47 @@ secretbox7/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_obje
                          crypto_secretbox_open :: secretbox7/test_secretbox7.c:29 <-
                          main
 ```
+
+```
+$ cd scrypt
+$ make undefined
+<SKIP>
+pwhash_scryptsalsa208sha256_nosse.c:122:22: runtime error: index 8 out of bounds for type 'uint64_t const[8]'
+pwhash_scryptsalsa208sha256_nosse.c:122:9: runtime error: index 8 out of bounds for type 'uint64_t [8]'
+pwhash_scryptsalsa208sha256_nosse.c:140:23: runtime error: index 8 out of bounds for type 'uint64_t const[8]'
+pwhash_scryptsalsa208sha256_nosse.c:140:9: runtime error: index 8 out of bounds for type 'uint64_t [8]'
+</SKIP>
+```
+
+```
+$ cd scrypt
+$ make interp
+rm -rf *.o *.out mike.c
+cat *.c >> mike.c
+ccomp -interp -quiet mike.c
+mike.c:1187: warning: control reaches end of non-void function [-Wreturn-type]
+Stuck state: in function escrypt_alloc_region, expression
+  <loc aligned> -= <ptr> & 63
+Stuck subexpression: <ptr> & 63
+ERROR: Undefined behavior
+make: *** [Makefile:13: interp] Error 126
+```
+
+```
+scrypt/scrypt_platform.c:66:[value] warning: The following sub-expression cannot be evaluated:
+                 (unsigned long)aligned & (unsigned long)63
+
+                 All sub-expressions with their values:
+                 unsigned long  (unsigned long)aligned ∈ {{ (unsigned long)&__malloc_escrypt_alloc_region_l64[63] }}
+                 unsigned long  (unsigned long)63 ∈ {63}
+                 uint8_t *  aligned ∈ {{ &__malloc_escrypt_alloc_region_l64[63] }}
+                 int  63 ∈ {63}
+
+                 Stopping
+                 stack: escrypt_alloc_region :: scrypt/pwhash_scryptsalsa208sha256_nosse.c:393 <-
+                        escrypt_kdf_nosse :: scrypt/crypto_scrypt-common.c:257 <-
+                        crypto_pwhash_scryptsalsa208sha256_ll :: scrypt/pwhash_scryptsalsa208sha256.c:179 <-
+                        crypto_pwhash_scryptsalsa208sha256 :: scrypt/test_pwhash_scrypt.c:44 <-
+                        tv :: scrypt/test_pwhash_scrypt.c:134 <-
+                        main
+```

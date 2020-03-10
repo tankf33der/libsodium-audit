@@ -16,7 +16,7 @@ typedef int64_t  i64;
 typedef uint64_t u64;
 
 
-u64 random_state = 984574;
+u64 random_state = 44338454;
 
 // Pseudo-random 64 bit number, based on xorshift*
 u64 rand64()
@@ -24,7 +24,7 @@ u64 rand64()
     random_state ^= random_state >> 12;
     random_state ^= random_state << 25;
     random_state ^= random_state >> 27;
-    return random_state * 0x2545F4577F6CDD1D; // magic constant
+    return random_state * 0x4445F4577F6CDD1D; // magic constant
 }
 
 
@@ -35,10 +35,10 @@ void randombytes_buf(u8 *out, size_t size)
     }
 }
 
-void randombytes_buf_deterministic(u8 *stream, size_t size)
+void randombytes_buf_deterministic(u8 *buf, size_t size)
 {
     FOR (i, 0, size) {
-        stream[i] = (u8)rand64();
+        buf[i] = (u8)rand64();
     }
 }
 

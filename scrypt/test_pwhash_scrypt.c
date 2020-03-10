@@ -48,10 +48,9 @@ tv(void)
             printf("pwhash failure\n");
         }
         sodium_bin2hex(out_hex, sizeof out_hex, out, tests[i].outlen);
-        printf("%s\n", out_hex);
+        //printf("%s\n", out_hex);
     } while (++i < (sizeof tests) / (sizeof tests[0]));
 }
-
 
 /*
 static void
