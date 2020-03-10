@@ -35,9 +35,9 @@ tv(void)
     size_t         i = 0U;
     size_t         in_len;
 
-    key = (unsigned char *) sodium_malloc(crypto_generichash_KEYBYTES_MAX);
-    out = (unsigned char *) sodium_malloc(crypto_generichash_BYTES_MAX);
-    expected_out = (unsigned char *) sodium_malloc(crypto_generichash_BYTES_MAX);
+    key = (unsigned char *) malloc(crypto_generichash_KEYBYTES_MAX);
+    out = (unsigned char *) malloc(crypto_generichash_BYTES_MAX);
+    expected_out = (unsigned char *) malloc(crypto_generichash_BYTES_MAX);
     do {
         assert(strlen(tests[i].key_hex) == 2 * crypto_generichash_KEYBYTES_MAX);
         sodium_hex2bin(key, crypto_generichash_KEYBYTES_MAX,
@@ -48,7 +48,7 @@ tv(void)
                        tests[i].out_hex, strlen(tests[i].out_hex),
                        NULL, NULL, NULL);
         in_len = strlen(tests[i].in_hex) / 2;
-        in = (unsigned char *) sodium_malloc(in_len);
+        in = (unsigned char *) malloc(in_len);
         sodium_hex2bin(in, in_len, tests[i].in_hex, strlen(tests[i].in_hex),
                        NULL, NULL, NULL);
         crypto_generichash(out, crypto_generichash_BYTES_MAX,
@@ -57,11 +57,11 @@ tv(void)
         if (memcmp(out, expected_out, crypto_generichash_BYTES_MAX) != 0) {
             printf("Test vector #%u failed\n", (unsigned int) i);
         }
-        sodium_free(in);
+        free(in);
     } while (++i < (sizeof tests) / (sizeof tests[0]));
-    sodium_free(key);
-    sodium_free(out);
-    sodium_free(expected_out);
+    free(key);
+    free(out);
+    free(expected_out);
 
     return 0;
 }
@@ -69,13 +69,6 @@ tv(void)
 int
 main(void)
 {
-    unsigned char in[MAXLEN];
-    unsigned char out[crypto_generichash_BYTES_MAX];
-    unsigned char k[crypto_generichash_KEYBYTES_MAX];
-    size_t        h;
-    size_t        i;
-    size_t        j;
-
     tv();
 	printf("generichash: ok\n");
     return 0;
