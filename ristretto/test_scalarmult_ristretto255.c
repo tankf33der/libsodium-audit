@@ -28,7 +28,7 @@ main(void)
     sodium_hex2bin(b, crypto_scalarmult_ristretto255_BYTES,
                    B_HEX, sizeof B_HEX - (size_t) 1U, NULL, NULL, NULL);
     memset(n, 0, crypto_scalarmult_ristretto255_SCALARBYTES);
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < 2; i++) {
         crypto_scalarmult_ristretto255_base(p, n);
         if (crypto_scalarmult_ristretto255(p2, n, b) != 0) {
             printf("crypto_scalarmult_ristretto255(%d) != 0\n", i);
