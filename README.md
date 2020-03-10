@@ -30,6 +30,8 @@ Items below passed SANs, TIS, compcert-interp somehow:
 
 [generichash](https://github.com/jedisct1/libsodium/blob/master/test/default/generichash.c)
 
+[ristretto](https://github.com/jedisct1/libsodium/blob/master/test/default/scalarmult_ristretto255.c)
+
 ====
 
 [libhydrogen](https://github.com/jedisct1/libhydrogen)
