@@ -4,25 +4,27 @@
 #ifndef NO_QUIRKS
 
 #define argon2_ctx _sodium_argon2_ctx
-#define argon2_decode_string _sodium_argon2_decode_string
-#define argon2_encode_string _sodium_argon2_encode_string
+//#define argon2_decode_string _sodium_argon2_decode_string
+//#define argon2_encode_string _sodium_argon2_encode_string
 #define argon2_fill_memory_blocks _sodium_argon2_fill_memory_blocks
 #define argon2_fill_segment_avx2 _sodium_argon2_fill_segment_avx2
 #define argon2_fill_segment_avx512f _sodium_argon2_fill_segment_avx512f
-#define argon2_fill_segment_ref _sodium_argon2_fill_segment_ref
+//#define argon2_fill_segment_ref _sodium_argon2_fill_segment_ref
 #define argon2_fill_segment_ssse3 _sodium_argon2_fill_segment_ssse3
 #define argon2_finalize _sodium_argon2_finalize
 #define argon2_hash _sodium_argon2_hash
 #define argon2_initialize _sodium_argon2_initialize
-#define argon2_validate_inputs _sodium_argon2_validate_inputs
+//#define argon2_validate_inputs _sodium_argon2_validate_inputs
 #define argon2_verify _sodium_argon2_verify
 #define argon2i_hash_encoded _sodium_argon2i_hash_encoded
-#define argon2i_hash_raw _sodium_argon2i_hash_raw
-#define argon2i_verify _sodium_argon2i_verify
-#define argon2id_hash_encoded _sodium_argon2id_hash_encoded
-#define argon2id_hash_raw _sodium_argon2id_hash_raw
-#define argon2id_verify _sodium_argon2id_verify
+//#define argon2i_hash_raw _sodium_argon2i_hash_raw
+//#define argon2i_verify _sodium_argon2i_verify
+//#define argon2id_hash_encoded _sodium_argon2id_hash_encoded
+//#define argon2id_hash_raw _sodium_argon2id_hash_raw
+//#define argon2id_verify _sodium_argon2id_verify
 #define blake2b _sodium_blake2b
+
+/*
 #define blake2b_compress_avx2 _sodium_blake2b_compress_avx2
 #define blake2b_compress_ref _sodium_blake2b_compress_ref
 #define blake2b_compress_sse41 _sodium_blake2b_compress_sse41
@@ -37,6 +39,7 @@
 #define blake2b_pick_best_implementation _sodium_blake2b_pick_best_implementation
 #define blake2b_salt_personal _sodium_blake2b_salt_personal
 #define blake2b_update _sodium_blake2b_update
+*/
 /*
 #define escrypt_PBKDF2_SHA256 _sodium_escrypt_PBKDF2_SHA256
 #define escrypt_alloc_region _sodium_escrypt_alloc_region

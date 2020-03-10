@@ -166,7 +166,7 @@ crypto_pwhash_str_alg(char out[crypto_pwhash_STRBYTES],
         return crypto_pwhash_argon2id_str(out, passwd, passwdlen,
                                           opslimit, memlimit);
     }
-    sodium_misuse();
+    //sodium_misuse();
     /* NOTREACHED */
     return -1;
 }
