@@ -1,4 +1,7 @@
 ### Raw list of uniq issues without any sorting:
+
+everything fixed in libsodium's repo.
+
 ```
 verify/verify.c:75:[kernel] warning: pointer arithmetic: assert \inside_object(x+i);
                   stack: crypto_verify_n :: verify/verify.c:85 <-
