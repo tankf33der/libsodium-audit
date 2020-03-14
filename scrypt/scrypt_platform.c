@@ -41,6 +41,8 @@
 # define MAP_POPULATE 0
 #endif
 
+#define HAVE_POSIX_MEMALIGN 1
+int posix_memalign(void **res, size_t align, size_t len);
 void *
 escrypt_alloc_region(escrypt_region_t *region, size_t size)
 {
@@ -53,9 +55,9 @@ escrypt_alloc_region(escrypt_region_t *region, size_t size)
     }                /* LCOV_EXCL_LINE */
     aligned  = base;
 #elif defined(HAVE_POSIX_MEMALIGN)
-    if ((errno = posix_memalign((void **) &base, 64, size)) != 0) {
-        base = NULL;
-    }
+    posix_memalign((void **) &base, 64, size);
+
+
     aligned = base;
 #else
     base = aligned = NULL;
