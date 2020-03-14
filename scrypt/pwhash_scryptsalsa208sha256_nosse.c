@@ -39,9 +39,9 @@
 #include "sodium/private/common.h"
 
 
-#define STORE32_LE(DST, W) store32_le3((DST), (W))
+#define STORE32_LE(DST, W) store32_le33((DST), (W))
 static inline void
-store32_le3(uint8_t dst[4], uint32_t w)
+store32_le33(uint8_t dst[4], uint32_t w)
 {
 #ifdef NATIVE_LITTLE_ENDIAN
     memcpy(dst, &w, sizeof w);

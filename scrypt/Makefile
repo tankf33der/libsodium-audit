@@ -8,8 +8,8 @@ undefined: clean
 mike:
 	cat *.c >> mike.c
 ccomp: clean mike
-	ccomp mike.c && ./a.out
+	ccomp -fstruct-passing mike.c && ./a.out
 interp: clean mike
-	ccomp -interp -quiet mike.c
+	ccomp -interp -quiet -fstruct-passing mike.c
 clean:
 	rm -rf *.o *.out mike.c
